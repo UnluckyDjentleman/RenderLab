@@ -34,7 +34,7 @@ app.get('/update/:id', (request, response)=>{
 })
 
 app.post('/add', (request, response)=>{
-    addContactMethod(request.body).then(response.redirect('/'));
+    addContactMethod(request.body);
 })
 
 app.post('/update/:id', (request,response)=>{
