@@ -7,7 +7,7 @@ const hbs=require('express-handlebars').create({
     extname:'.hbs',
     helpers:{
         dismiss: ()=>{
-            return '<button type="button" class="btn btn-link" style="width:20%; margin:1.5%" onclick="window.location.href=\'http://localhost:3000/\'">Deny</button>'
+            return '<button type="button" class="btn btn-link" style="width:20%; margin:1.5%" onclick="window.location.href=\'/\'">Deny</button>'
         }
     }
 });
