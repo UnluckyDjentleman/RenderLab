@@ -5,7 +5,7 @@ addContact=()=>{
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({name: nameContact, phone: phoneContact})
-    })
+    }).then(()=>window.location.href='/')
 }
 
 updateContact=()=>{
@@ -16,7 +16,7 @@ updateContact=()=>{
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({name: nameContact, phone: phoneContact})
-    })
+    }).then(()=>window.location.href='/')
 }
 
 deleteContact=()=>{
@@ -24,7 +24,7 @@ deleteContact=()=>{
     fetch(`/delete/${id}`,{
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
-    })
+    }).then(()=>window.location.href='/')
 }
 
 checkTelephone=(number)=>{
