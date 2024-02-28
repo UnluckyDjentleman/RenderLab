@@ -5,7 +5,7 @@ addContact=()=>{
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({name: nameContact, phone: phoneContact})
-    }).then(()=>window.location.href='/')
+    }).then(resp=>resp.json()).then(()=>window.location.href='/')
 }
 
 updateContact=()=>{
