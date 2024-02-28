@@ -24,7 +24,6 @@ const addContactMethod=async (data)=>{
             phone: data.phone
         });
         save();
-        return resp;
     }
     catch(e){
         console.log(e.message);
