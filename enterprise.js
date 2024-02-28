@@ -4,7 +4,7 @@ const fs=require('fs');
 
 const getAllContacts=async(res)=>{
     try{
-        res.render('index', {
+        await res.render('index', {
             contacts:resp
         });
     }
@@ -51,7 +51,7 @@ const getForUpdate=async(req, res)=>{
     try{
         const ident=req.params["id"];
         const cont=resp.find(elem=>elem.id===parseInt(ident));
-        res.render('editItem',{
+        await res.render('editItem',{
             contacts: resp,
             thisContact: cont
         })
@@ -77,7 +77,7 @@ const deleteContactMethod=async (req)=>{
 }
 const getForInsert=async (res)=>{
     try{
-        res.render('addItem', {
+        await res.render('addItem', {
             contacts:resp
         });
     }
