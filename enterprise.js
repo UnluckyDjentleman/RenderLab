@@ -2,9 +2,9 @@ const resp=require('./contacts.json')||[];
 const fs=require('fs');
 
 
-const getAllContacts=async(res)=>{
+const getAllContacts=(res)=>{
     try{
-        await res.render('index', {
+        res.render('index', {
             contacts:resp
         });
     }
@@ -12,7 +12,7 @@ const getAllContacts=async(res)=>{
         res.status(500).send(e);
     }
 }
-const addContactMethod=async (data, res)=>{
+const addContactMethod=(data)=>{
     var index=parseInt(Math.floor(Math.random()*100))
     while(resp.find(elem=>elem.id===parseInt(index))){
         index=parseInt(Math.floor(Math.random()*100));
@@ -24,14 +24,13 @@ const addContactMethod=async (data, res)=>{
             phone: data.phone
         });
         save();
-        await res.redirect('/');
     }
     catch(e){
         console.log(e.message);
     }
 }
 
-const updateContactMethod=async (req, res) =>{
+const updateContactMethod=(req) =>{
     try{
         const ident=req.params["id"];
         const cont=resp.find(elem=>elem.id===parseInt(ident));
@@ -40,19 +39,17 @@ const updateContactMethod=async (req, res) =>{
             cont.phone=req.body.phone;
         }
         save();
-        await res.redirect('/');
     }
     catch(e){
         console.log(e.message);
     }
 }
 
-
 const getForUpdate=async(req, res)=>{
     try{
         const ident=req.params["id"];
         const cont=resp.find(elem=>elem.id===parseInt(ident));
-        await res.render('editItem',{
+        res.render('editItem',{
             contacts: resp,
             thisContact: cont
         })
@@ -62,7 +59,7 @@ const getForUpdate=async(req, res)=>{
     }
 }
 
-const deleteContactMethod=async (req, res)=>{
+const deleteContactMethod=(req)=>{
     try{
         const ident=req.params["id"];
         const index=resp.findIndex(elem=>elem.id===parseInt(ident));
@@ -70,15 +67,14 @@ const deleteContactMethod=async (req, res)=>{
             resp.splice(index,1)
         }
         save();
-        await res.redirect('/');
     }
     catch(e){
         console.log(e.message);
     }
 }
-const getForInsert=async (res)=>{
+const getForInsert=(res)=>{
     try{
-        await res.render('addItem', {
+        res.render('addItem', {
             contacts:resp
         });
     }
@@ -86,6 +82,7 @@ const getForInsert=async (res)=>{
         res.status(500).send(e);
     }
 }
+
 
 save=async()=>{
     try{
