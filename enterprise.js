@@ -12,7 +12,7 @@ const getAllContacts=async (res)=>{
         res.status(500).send(e);
     }
 }
-const addContactMethod=async(data)=>{
+const addContactMethod=async (data)=>{
     var index=parseInt(Math.floor(Math.random()*100))
     while(resp.find(elem=>elem.id===parseInt(index))){
         index=parseInt(Math.floor(Math.random()*100));
@@ -30,7 +30,7 @@ const addContactMethod=async(data)=>{
     }
 }
 
-const updateContactMethod=async(req) =>{
+const updateContactMethod=async (req) =>{
     try{
         const ident=req.params["id"];
         const cont=resp.find(elem=>elem.id===parseInt(ident));
@@ -45,7 +45,7 @@ const updateContactMethod=async(req) =>{
     }
 }
 
-const getForUpdate=async(req, res)=>{
+const getForUpdate=async (req, res)=>{
     try{
         const ident=req.params["id"];
         const cont=resp.find(elem=>elem.id===parseInt(ident));
@@ -59,7 +59,7 @@ const getForUpdate=async(req, res)=>{
     }
 }
 
-const deleteContactMethod=async(req)=>{
+const deleteContactMethod=async (req)=>{
     try{
         const ident=req.params["id"];
         const index=resp.findIndex(elem=>elem.id===parseInt(ident));
@@ -72,7 +72,7 @@ const deleteContactMethod=async(req)=>{
         console.log(e.message);
     }
 }
-const getForInsert=async(res)=>{
+const getForInsert=async (res)=>{
     try{
         await res.render('addItem', {
             contacts:resp
