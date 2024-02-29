@@ -34,16 +34,24 @@ app.get('/update/:id', (request, response)=>{
 })
 
 app.post('/add', (request, response)=>{
-    addContactMethod(request.body, response)
+    addContactMethod(request.body);
+    response.redirect('/');
 })
 
-app.post('/update/:id', (request,response)=>{
-    updateContactMethod(request, response)
+app.post('/update/:id', (request, response)=>{
+    updateContactMethod(request);
+    response.redirect('/');
 })
 
-app.post('/delete/:id', (request,response)=>{
-    deleteContactMethod(request, response)
+app.post('/delete/:id', (request, response)=>{
+    deleteContactMethod(request);
+    response.redirect('/');
 })
+
+app.listen(port, () => {
+    console.log('Server is running on port '+port);
+});
+
 
 app.listen(port, () => {
     console.log('Server is running on port '+port);
