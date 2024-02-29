@@ -12,7 +12,7 @@ const getAllContacts=async(res)=>{
         res.status(500).send(e);
     }
 }
-const addContactMethod=async (data)=>{
+const addContactMethod=async (data, res)=>{
     var index=parseInt(Math.floor(Math.random()*100))
     while(resp.find(elem=>elem.id===parseInt(index))){
         index=parseInt(Math.floor(Math.random()*100));
@@ -24,14 +24,14 @@ const addContactMethod=async (data)=>{
             phone: data.phone
         });
         save();
-        return resp;
+        await res.redirect('/');
     }
     catch(e){
         console.log(e.message);
     }
 }
 
-const updateContactMethod=async (req) =>{
+const updateContactMethod=async (req, res) =>{
     try{
         const ident=req.params["id"];
         const cont=resp.find(elem=>elem.id===parseInt(ident));
@@ -40,12 +40,13 @@ const updateContactMethod=async (req) =>{
             cont.phone=req.body.phone;
         }
         save();
-        return resp;
+        await res.redirect('/');
     }
     catch(e){
         console.log(e.message);
     }
 }
+
 
 const getForUpdate=async(req, res)=>{
     try{
@@ -61,7 +62,7 @@ const getForUpdate=async(req, res)=>{
     }
 }
 
-const deleteContactMethod=async (req)=>{
+const deleteContactMethod=async (req, res)=>{
     try{
         const ident=req.params["id"];
         const index=resp.findIndex(elem=>elem.id===parseInt(ident));
@@ -69,7 +70,7 @@ const deleteContactMethod=async (req)=>{
             resp.splice(index,1)
         }
         save();
-        return resp;
+        await res.redirect('/');
     }
     catch(e){
         console.log(e.message);
@@ -85,7 +86,6 @@ const getForInsert=async (res)=>{
         res.status(500).send(e);
     }
 }
-
 
 save=async()=>{
     try{
