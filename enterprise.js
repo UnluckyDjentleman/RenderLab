@@ -2,9 +2,9 @@ const resp=require('./contacts.json')||[];
 const fs=require('fs');
 
 
-const getAllContacts=(res)=>{
+const getAllContacts=async (res)=>{
     try{
-        res.render('index', {
+        await res.render('index', {
             contacts:resp
         });
     }
@@ -12,7 +12,7 @@ const getAllContacts=(res)=>{
         res.status(500).send(e);
     }
 }
-const addContactMethod=(data)=>{
+const addContactMethod=async(data)=>{
     var index=parseInt(Math.floor(Math.random()*100))
     while(resp.find(elem=>elem.id===parseInt(index))){
         index=parseInt(Math.floor(Math.random()*100));
@@ -30,7 +30,7 @@ const addContactMethod=(data)=>{
     }
 }
 
-const updateContactMethod=(req) =>{
+const updateContactMethod=async(req) =>{
     try{
         const ident=req.params["id"];
         const cont=resp.find(elem=>elem.id===parseInt(ident));
@@ -45,11 +45,11 @@ const updateContactMethod=(req) =>{
     }
 }
 
-const getForUpdate=(req, res)=>{
+const getForUpdate=async(req, res)=>{
     try{
         const ident=req.params["id"];
         const cont=resp.find(elem=>elem.id===parseInt(ident));
-        res.render('editItem',{
+        await res.render('editItem',{
             contacts: resp,
             thisContact: cont
         })
@@ -59,7 +59,7 @@ const getForUpdate=(req, res)=>{
     }
 }
 
-const deleteContactMethod=(req)=>{
+const deleteContactMethod=async(req)=>{
     try{
         const ident=req.params["id"];
         const index=resp.findIndex(elem=>elem.id===parseInt(ident));
@@ -72,9 +72,9 @@ const deleteContactMethod=(req)=>{
         console.log(e.message);
     }
 }
-const getForInsert=(res)=>{
+const getForInsert=async(res)=>{
     try{
-        res.render('addItem', {
+        await res.render('addItem', {
             contacts:resp
         });
     }
