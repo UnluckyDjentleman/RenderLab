@@ -34,15 +34,15 @@ app.get('/update/:id', (request, response)=>{
 })
 
 app.post('/add', (request, response)=>{
-    addContactMethod(request.body).then(()=>response.redirect('/'));
+    addContactMethod(request.body, response)
 })
 
 app.post('/update/:id', (request,response)=>{
-    updateContactMethod(request).then(()=>response.redirect('/'));
+    updateContactMethod(request, response)
 })
 
 app.post('/delete/:id', (request,response)=>{
-    deleteContactMethod(request).then(()=>response.redirect('/'));
+    deleteContactMethod(request, response)
 })
 
 app.listen(port, () => {
