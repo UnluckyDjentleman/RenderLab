@@ -45,7 +45,7 @@ const updateContactMethod=(req) =>{
     }
 }
 
-const getForUpdate=async(req, res)=>{
+const getForUpdate=(req, res)=>{
     try{
         const ident=req.params["id"];
         const cont=resp.find(elem=>elem.id===parseInt(ident));
