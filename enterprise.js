@@ -23,7 +23,7 @@ const addContactMethod=async(data)=>{
             name: data.name,
             phone: data.phone
         });
-        await save();
+        save();
         return resp
     }
     catch(e){
