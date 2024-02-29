@@ -23,7 +23,7 @@ const addContactMethod=async(data)=>{
             name: data.name,
             phone: data.phone
         });
-        save();
+        await save();
         return resp
     }
     catch(e){
@@ -64,11 +64,11 @@ const getForUpdate=async (req, res)=>{
 const deleteContactMethod=async(req)=>{
     try{
         const ident=req.params["id"];
-        const index=await resp.findIndex(elem=>elem.id===parseInt(ident));
+        const index=resp.findIndex(elem=>elem.id===parseInt(ident));
         if(index!==-1){
             resp.splice(index,1)
         }
-        save();
+        await save();
         return resp
     }
     catch(e){
